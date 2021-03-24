@@ -7,8 +7,8 @@ import AlignContent from './AlignContent';
 import AlignItems from './AlignItems';
 import FlexDirection from './FlexDirection';
 import FlexWrap from './FlexWrap';
-import './index.css';
 import JustifyContent from './JustifyContent';
+import './index.css';
 
 const globalColorData = [
     { label: 1, value: '#f5222d' },
