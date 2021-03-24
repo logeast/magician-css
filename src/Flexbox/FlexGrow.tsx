@@ -10,7 +10,11 @@ type Props = {
 };
 
 function FlexGrow({ colorData }: Props) {
+    const [value, setValue] = useState(['unset', 'unset', 'unset', 'unset']);
 
+    const handleChange = (val: number, label: number) => {
+        setValue(value.splice(label - 1, 1, val))
+    }
     return (
         <div className="control">
             <h4>
@@ -18,16 +22,17 @@ function FlexGrow({ colorData }: Props) {
                 <small>(property of the flex container)</small>
             </h4>
             <div className="radio">
-                <Form layout="inline">
-                    <Form.Item label="Field A">
-                        <InputNumber min={1} max={10} defaultValue={3} onChange={value => value} />
-                    </Form.Item>
+                <Form layout="inline" >
+                    {
+                        colorData.map((item) => (
+                            <Form.Item label={`item ${item.label}`}>
+                                <InputNumber min={0} onChange={() => handleChange(value, item.label)} />
+                            </Form.Item>
+                        ))
+                    }
                 </Form>
             </div>
-            <div className={classNames('flex-container')} style={{
-                flexWrap: 'wrap',
-                height: '600px'
-            }}>
+            <div className={classNames('flex-container')}>
                 {colorData.map((item) => {
                     return (
                         <Card
@@ -36,6 +41,7 @@ function FlexGrow({ colorData }: Props) {
                             bordered={false}
                             style={{
                                 background: item.value,
+                                flexGrow: value[item.label],
                             }}
                         >
                             {item.label}
