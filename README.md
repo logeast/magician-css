@@ -1,4 +1,6 @@
-# New Project
+# 魔法师 CSS3
+
+现代 CSS 实战教程。
 
 > ✨ Bootstrapped with Create Snowpack App (CSA).
 
