@@ -10,11 +10,13 @@ type Props = {
 };
 
 function FlexGrow({ colorData }: Props) {
-    const [value, setValue] = useState(['unset', 'unset', 'unset', 'unset']);
+    const [value, setValue] = useState([0, 0, 0, 0, 0]);
 
     const handleChange = (val: number, label: number) => {
-        setValue(value.splice(label - 1, 1, val))
+        value[label - 1] = val;
+        setValue(value);
     }
+
     return (
         <div className="control">
             <h4>
@@ -25,8 +27,8 @@ function FlexGrow({ colorData }: Props) {
                 <Form layout="inline" >
                     {
                         colorData.map((item) => (
-                            <Form.Item label={`item ${item.label}`}>
-                                <InputNumber min={0} onChange={() => handleChange(value, item.label)} />
+                            <Form.Item key={item.label} label={`item ${item.label}`}>
+                                <InputNumber min={0} onChange={(val) => handleChange(val, item.label)} />
                             </Form.Item>
                         ))
                     }
@@ -34,6 +36,7 @@ function FlexGrow({ colorData }: Props) {
             </div>
             <div className={classNames('flex-container')}>
                 {colorData.map((item) => {
+                    console.log({value})
                     return (
                         <Card
                             key={item.label}
@@ -41,7 +44,7 @@ function FlexGrow({ colorData }: Props) {
                             bordered={false}
                             style={{
                                 background: item.value,
-                                flexGrow: value[item.label],
+                                flexGrow: value[item.label - 1],
                             }}
                         >
                             {item.label}
