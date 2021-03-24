@@ -9,19 +9,22 @@ type Props = {
     }[];
 };
 
-function FlexWrap({ colorData }: Props) {
-    const [value, setValue] = useState('nowrap');
+function AlignSelf({ colorData }: Props) {
+    const [value, setValue] = useState('align-self-start');
     const RadioOptions = [
-        { label: 'nowrap', value: 'nowrap' },
-        { label: 'wrap', value: 'wrap' },
-        { label: 'wrap-reverse', value: 'wrap-reverse' },
+        { label: 'auto', value: 'align-self-auto' },
+        { label: 'flex-start', value: 'align-self-start' },
+        { label: 'flex-end', value: 'align-self-end' },
+        { label: 'center', value: 'align-self-center' },
+        { label: 'baseline', value: 'align-self-baseline' },
+        { label: 'stretch', value: 'align-self-stretch' },
     ];
 
     return (
         <div className="control">
             <h4>
-                <span>flex-wrap</span>
-                <small>(property of the flex container)</small>
+                <span>align-self</span> 
+                <small>(property of the flex items)</small>
             </h4>
             <div className="radio">
                 <Radio.Group
@@ -32,14 +35,19 @@ function FlexWrap({ colorData }: Props) {
                     }}
                 />
             </div>
-            <div className={classNames('flex-container', value)}>
+            <div className="flex-container align-items-center" style={{
+                height: '300px'
+            }}>
                 {colorData.map((item) => {
                     return (
                         <Card
                             key={item.label}
-                            className="item"
+                            className={classNames("item", value)}
                             bordered={false}
-                            style={{ background: item.value }}
+                            style={{
+                                background: item.value,
+                                minHeight: item.label === 3 ? '150px' : undefined,
+                            }}
                         >
                             {item.label}
                         </Card>
@@ -50,4 +58,4 @@ function FlexWrap({ colorData }: Props) {
     );
 }
 
-export default FlexWrap;
+export default AlignSelf;

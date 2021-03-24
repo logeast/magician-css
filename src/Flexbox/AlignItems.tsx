@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
 import { Card, Radio } from 'antd';
 import classNames from 'classnames';
-import './index.css';
 
 type Props = {
     colorData: {
-        label: string | number;
+        label: number;
         value: string;
     }[];
 };
@@ -35,7 +34,9 @@ function AlignItems({ colorData }: Props) {
                     }}
                 />
             </div>
-            <div className={classNames('flex-container', value)}>
+            <div className={classNames('flex-container', value)} style={{
+                height: '300px'
+            }}>
                 {colorData.map((item) => {
                     return (
                         <Card
@@ -44,7 +45,7 @@ function AlignItems({ colorData }: Props) {
                             bordered={false}
                             style={{
                                 background: item.value,
-                                height: item.label === '3' && '150px',
+                                minHeight: item.label === 3 ? '150px' : undefined,
                             }}
                         >
                             {item.label}

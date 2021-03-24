@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Card, Radio } from 'antd';
+import { Card, Form, InputNumber } from 'antd';
 import classNames from 'classnames';
 
 type Props = {
@@ -9,37 +9,34 @@ type Props = {
     }[];
 };
 
-function FlexWrap({ colorData }: Props) {
-    const [value, setValue] = useState('nowrap');
-    const RadioOptions = [
-        { label: 'nowrap', value: 'nowrap' },
-        { label: 'wrap', value: 'wrap' },
-        { label: 'wrap-reverse', value: 'wrap-reverse' },
-    ];
+function FlexGrow({ colorData }: Props) {
 
     return (
         <div className="control">
             <h4>
-                <span>flex-wrap</span>
+                <span>flex-grow</span>
                 <small>(property of the flex container)</small>
             </h4>
             <div className="radio">
-                <Radio.Group
-                    options={RadioOptions}
-                    value={value}
-                    onChange={(e: any) => {
-                        setValue(e.target.value);
-                    }}
-                />
+                <Form layout="inline">
+                    <Form.Item label="Field A">
+                        <InputNumber min={1} max={10} defaultValue={3} onChange={value => value} />
+                    </Form.Item>
+                </Form>
             </div>
-            <div className={classNames('flex-container', value)}>
+            <div className={classNames('flex-container')} style={{
+                flexWrap: 'wrap',
+                height: '600px'
+            }}>
                 {colorData.map((item) => {
                     return (
                         <Card
                             key={item.label}
                             className="item"
                             bordered={false}
-                            style={{ background: item.value }}
+                            style={{
+                                background: item.value,
+                            }}
                         >
                             {item.label}
                         </Card>
@@ -50,4 +47,4 @@ function FlexWrap({ colorData }: Props) {
     );
 }
 
-export default FlexWrap;
+export default FlexGrow;

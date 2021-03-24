@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
 import { Card, Radio } from 'antd';
 import classNames from 'classnames';
-import './index.css';
 
 type Props = {
     colorData: {
-        label: string | number;
+        label: number;
         value: string;
     }[];
 };
