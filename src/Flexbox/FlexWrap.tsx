@@ -5,7 +5,7 @@ import './index.css';
 
 type Props = {
     colorData: {
-        label: string;
+        label: string | number;
         value: string;
     }[];
 };

@@ -10,20 +10,20 @@ type Props = {
     }[];
 };
 
-function AlignItems({ colorData }: Props) {
-    const [value, setValue] = useState('align-items-start');
+function JustifyContent({ colorData }: Props) {
+    const [value, setValue] = useState('justify-start');
     const RadioOptions = [
-        { label: 'flex-start', value: 'align-items-start' },
-        { label: 'flex-end', value: 'align-items-end' },
-        { label: 'center', value: 'align-items-center' },
-        { label: 'baseline', value: 'align-items-baseline' },
-        { label: 'stretch', value: 'align-items-stretch' },
+        { label: 'flex-start', value: 'justify-start' },
+        { label: 'flex-end', value: 'justify-end' },
+        { label: 'center', value: 'justify-center' },
+        { label: 'space-between', value: 'justify-space-between' },
+        { label: 'space-around', value: 'justify-space-around' },
     ];
 
     return (
         <div className="control">
             <h4>
-                <span>align-items</span>
+                <span>justify-conent</span>
                 <small>(property of the flex container)</small>
             </h4>
             <div className="radio">
@@ -44,7 +44,6 @@ function AlignItems({ colorData }: Props) {
                             bordered={false}
                             style={{
                                 background: item.value,
-                                height: item.label === '3' && '150px',
                             }}
                         >
                             {item.label}
@@ -56,4 +55,4 @@ function AlignItems({ colorData }: Props) {
     );
 }
 
-export default AlignItems;
+export default JustifyContent;

@@ -10,20 +10,21 @@ type Props = {
     }[];
 };
 
-function AlignItems({ colorData }: Props) {
-    const [value, setValue] = useState('align-items-start');
+function AlignContent({ colorData }: Props) {
+    const [value, setValue] = useState('align-content-start');
     const RadioOptions = [
-        { label: 'flex-start', value: 'align-items-start' },
-        { label: 'flex-end', value: 'align-items-end' },
-        { label: 'center', value: 'align-items-center' },
-        { label: 'baseline', value: 'align-items-baseline' },
-        { label: 'stretch', value: 'align-items-stretch' },
+        { label: 'flex-start', value: 'align-content-start' },
+        { label: 'flex-end', value: 'align-content-end' },
+        { label: 'center', value: 'align-content-center' },
+        { label: 'space-between', value: 'align-content-space-between' },
+        { label: 'space-around', value: 'align-content-space-around' },
+        { label: 'stretch', value: 'align-content-stretch' },
     ];
 
     return (
         <div className="control">
             <h4>
-                <span>align-items</span>
+                <span>align-content</span>
                 <small>(property of the flex container)</small>
             </h4>
             <div className="radio">
@@ -35,7 +36,10 @@ function AlignItems({ colorData }: Props) {
                     }}
                 />
             </div>
-            <div className={classNames('flex-container', value)}>
+            <div className={classNames('flex-container', value)} style={{
+                flexWrap: 'wrap',
+                height: '600px'
+            }}>
                 {colorData.map((item) => {
                     return (
                         <Card
@@ -44,7 +48,6 @@ function AlignItems({ colorData }: Props) {
                             bordered={false}
                             style={{
                                 background: item.value,
-                                height: item.label === '3' && '150px',
                             }}
                         >
                             {item.label}
@@ -56,4 +59,4 @@ function AlignItems({ colorData }: Props) {
     );
 }
 
-export default AlignItems;
+export default AlignContent;
