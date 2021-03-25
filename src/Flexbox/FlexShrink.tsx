@@ -1,5 +1,5 @@
 import React, { useCallback, useState } from 'react';
-import { Card, Form, Input, InputNumber } from 'antd';
+import { Card, Form, InputNumber } from 'antd';
 import classNames from 'classnames';
 
 type Props = {
@@ -9,42 +9,42 @@ type Props = {
     }[];
 };
 
-function FlexGrow({ colorData }: Props) {
+function FlexShrink({ colorData }: Props) {
     let tem = new Array();
     tem.length = colorData.length;
-    const [value, setValue] = useState(tem);
-
-    const handleChange = (val: number, label: number = 1) => {
-        setValue((v) => {
-            v[label - 1] = val;
-            return v;
-        });
-    };
+    const [value, setValue] = useState<any>(0);
 
     return (
         <div className="control">
             <h4>
-                <span>flex-grow</span>
+                <span>flex-shrink</span>
                 <small>(property of the flex items)</small>
             </h4>
             <div className="radio">
-                <Form layout="inline">
+                {/* <Form layout="inline">
                     {colorData.map((item) => (
                         <Form.Item
                             key={item.label}
                             label={`item ${item.label}`}
                         >
-                            <Input
-                                type="number"
+                            <InputNumber
                                 min={0}
-                                }
+                                onChange={(val) => {
+                                    handleChange(val, item.label);
+                                }}
                             />
                         </Form.Item>
                     ))}
-                </Form>
+                </Form> */}
+                {colorData.map((item) => (
+                    <InputNumber
+                        min={0}
+                        onChange={(val: any) => setValue(val)}
+                    />
+                ))}
             </div>
-            <div className={classNames('flex-container')}>
-                {console.log({ value })}
+            <div>{value}</div>
+            <div className="flex-container">
                 {colorData.map((item) => {
                     return (
                         <Card
@@ -53,11 +53,10 @@ function FlexGrow({ colorData }: Props) {
                             bordered={false}
                             style={{
                                 background: item.value,
-                                flexGrow: value[item.label - 1],
+                                flexShrink: value,
                             }}
                         >
-                            {/* {item.label} */}
-                            {value[item.label - 1]}
+                            {value}
                         </Card>
                     );
                 })}
@@ -66,4 +65,4 @@ function FlexGrow({ colorData }: Props) {
     );
 }
 
-export default FlexGrow;
+export default FlexShrink;

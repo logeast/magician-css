@@ -11,6 +11,7 @@ import JustifyContent from './JustifyContent';
 import './index.css';
 import AlignSelf from './AlignSelf';
 import FlexGrow from './FlexGrow';
+import FlexShrink from './FlexShrink';
 
 const globalColorData = [
     { label: 1, value: '#f5222d' },
@@ -54,6 +55,7 @@ function Flexbox() {
                     <h2>Properties for the flex items</h2>
                     <AlignSelf colorData={globalColorData.slice(0, 5)} />
                     <FlexGrow colorData={globalColorData.slice(0, 5)} />
+                    <FlexShrink colorData={globalColorData.slice(0, 5)} />
                 </section>
             </div>
         </div>
